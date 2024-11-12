@@ -34,7 +34,10 @@ html = driver.find_element(By.XPATH, "//div[contains(@class, 's-main-slot s-resu
 
 i = 2
 while True:
-    maincompartment = abc= WebDriverWait(driver,15).until(EC.presence_of_all_elements_located((By.XPATH,"//div[contains(@class, 'puisg-col-inner')]/div[contains(@class, 'a-section a-spacing-small a-spacing-top-small') and div[contains(@data-cy, 'title-recipe')]]")))
+    try:
+        maincompartment = abc= WebDriverWait(driver,15).until(EC.presence_of_all_elements_located((By.XPATH,"//div[contains(@class, 'puisg-col-inner')]/div[contains(@class, 'a-section a-spacing-small a-spacing-top-small') and div[contains(@data-cy, 'title-recipe')]]")))
+    except:
+        maincompartment = []
     for m in maincompartment:  
         name = ""
         available = False
@@ -63,8 +66,10 @@ while True:
             href = "Href not found"
 
         try:
-            rating_element = m.find_element(By.XPATH, ".//a[contains(@class,'a-popover-trigger a-declarative')]")
-            rating = rating_element.text
+            rating_element = m.find_element(By.XPATH, ".//a[contains(@class,'a-popover-trigger a-declarative')]//span") # m is //div[contains(@class, 'puisg-col-inner')]/div[contains(@class, 'a-section a-spacing-small a-spacing-top-small') and div[contains(@data-cy, 'title-recipe')]]
+
+
+            rating = rating_element.get_attribute("innerText")
         except:
             rating = "Rating not found"
 
