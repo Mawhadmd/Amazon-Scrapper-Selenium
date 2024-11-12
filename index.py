@@ -19,7 +19,7 @@ file = []
 with open(f'{searchquery}.json', 'w') as w:
         json.dump([],w,indent=2)
     
-html = driver.get(f'https://www.amazon.ae/s?k={searchquery}')
+html = driver.get(f'https://www.amazon.com/s?k={searchquery}')
 
 
 def login():
