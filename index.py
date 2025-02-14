@@ -1,3 +1,4 @@
+import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options 
 from selenium.webdriver.chrome.service import Service 
@@ -23,13 +24,14 @@ html = driver.get(f'https://www.amazon.com/s?k={searchquery}')
 
 
 def login():
+    time.sleep(3)
     e = driver.find_element(By.CSS_SELECTOR,'input#e')
     e.click()
     e.send_keys(f'{searchquery}')
 
     f = driver.find_element(By.CSS_SELECTOR,'input#f')
     f.click()
-
+login()
 html = driver.find_element(By.XPATH, "//div[contains(@class, 's-main-slot s-result-list s-search-results sg-row')]")
 
 i = 2
